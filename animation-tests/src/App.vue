@@ -32,18 +32,20 @@ export default {
 <style>
   .menu-popover-enter,
   .menu-popover-leave-to {    
-    opacity: 0;
-    transform: rotateZ(50deg);
+    opacity: 0;    
+    transform: translateX(300px);
   }
 
   .menu-popover-enter-to,
   .menu-popover-leave {    
     opacity: 1;    
-    transform: rotateZ(0deg);
+    transform: translateX(0px);
   }
 
   .menu-popover-enter-active,
-  .menu-popover-leave-active {
-    transition: opacity, transform 3s ease-out;
+  .menu-popover-leave-active {    
+    transition-property: transform,opacity;
+    transition-duration: 2s;
+    transition-timing-function: ease-out;
   }
 </style>
