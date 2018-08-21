@@ -1,13 +1,9 @@
 <template>
-  <div id="app">
-    {{ text }} 
-    <button @click="toggleShow">Show</button>
+  <div id="app">    
     <transition name="menu-popover">
-      <ul class="menu-popover" v-if="show">
-        <li>Payments</li>
-        <li>Subscriptions</li>
-        <li>Connect</li>
-      </ul>
+      <div v-if="showFirstText">
+        More time. More Money.
+      </div>
     </transition>    
   </div>
 </template>
@@ -16,15 +12,24 @@
 export default {
   name: 'app',
   data() {
-    return {
-      text: 'Hello world.',
-      show: false
+    return {      
+      showFirstText: false
     }    
   },
   methods: {
-    toggleShow() {
-      this.show = !this.show;
+    toggleShowFirstText() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          this.showFirstText = true;
+        }, 3000),
+        reject({ 
+          // An error occurred.
+        });
+      });      
     }
+  },
+  mounted() {
+    this.toggleShowFirstText();
   }
 }
 </script>
