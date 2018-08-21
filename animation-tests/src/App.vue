@@ -1,28 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{ text }} 
+    <button @click="toggleShow">Show</button>
+    <transition name="menu-popover">
+      <ul class="menu-popover" v-if="show">
+        <li>Payments</li>
+        <li>Subscriptions</li>
+        <li>Connect</li>
+      </ul>
+    </transition>    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      text: 'Hello world.',
+      show: false
+    }    
+  },
+  methods: {
+    toggleShow() {
+      this.show = !this.show;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .menu-popover-enter,
+  .menu-popover-leave-to {    
+    opacity: 0;
+    transform: rotateZ(50deg);
+  }
+
+  .menu-popover-enter-to,
+  .menu-popover-leave {    
+    opacity: 1;    
+    transform: rotateZ(0deg);
+  }
+
+  .menu-popover-enter-active,
+  .menu-popover-leave-active {
+    transition: opacity, transform 3s ease-out;
+  }
 </style>
